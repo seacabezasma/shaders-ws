@@ -1,7 +1,9 @@
 precision highp float;
 
-attribute vec2 vPos;
+varying vec2 position;
 
 void main() {
-	gl_Position = vec4(vPos, 0.0, 1.0);
+	position = vec2(gl_Vertex);
+    gl_Position = vec4(Position, 0.0f, 1.0f);
 }
+

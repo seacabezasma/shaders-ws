@@ -1,9 +1,16 @@
+precision highp float;
 
 uniform vec2 u_resolution;
+uniform vec2 translate;
+uniform float scale;
 
 void main() {
-  vec2 st = gl_FragCoord.xy/u_resolution.xy;
 
+  vec2 st = gl_FragCoord.xy / u_resolution.xy;
+  
+  st.x = (u_resolution.x / u_resolution.y) * (st.x  - (translate.x * 2) ) * scale;
+  st.y = (st.y - translate.y) * scale;
+  
   int m = 100;
   int n = 0;
   float a = st.x;
@@ -35,7 +42,7 @@ void main() {
     vec3 color1 = vec3(0, 0, 1);
     vec3 color2 = vec3(1, 1, 1);
 
-    float pt = sqrt(n / m);
+    float pt = sqrt((n * 1.0) / m);
 
     vec3 col = mix(color1, color2, pt);
 
